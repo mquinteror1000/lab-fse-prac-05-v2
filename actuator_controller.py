@@ -1,6 +1,6 @@
 """Recibe comandos MQTT y controla el actuador mediante GPIO17."""
 import paho.mqtt.client as mqtt
-from gpiozero import OutputDevice
+from gpiozero import PWMOutputDevice
 
 from settings import (
     BROKER_HOST,
@@ -11,7 +11,8 @@ from settings import (
     TOPIC_FAN_STATUS,
 )
 
-actuator = OutputDevice(GPIO_PIN, active_high=True, initial_value=False)
+# Se inicializa el pin como salida PWM con 20 Hz de frecuencia
+actuator = PWMOutputDevice(GPIO_PIN, frequency=20, initial_value=0)
 
 
 def on_connect(client, userdata, flags, reason_code, properties):
@@ -28,11 +29,12 @@ def on_message(client, userdata, message):
     command = message.payload.decode("utf-8").strip().lower()
 
     if command == "true":
-        actuator.on()
+        # 1.0 equivale al 100% del ciclo de trabajo
+        actuator.value = 0.5 
         status = "true"
-        print("Actuador encendido.")
+        print("Actuador encendido (PWM al 100%, 20 Hz).")
     elif command == "false":
-        actuator.off()
+        actuator.value = 0.0
         status = "false"
         print("Actuador apagado.")
     else:
@@ -56,7 +58,7 @@ def main():
     except KeyboardInterrupt:
         print("\nControlador detenido.")
     finally:
-        actuator.off()
+        actuator.value = 0.0
         actuator.close()
         client.disconnect()
 
