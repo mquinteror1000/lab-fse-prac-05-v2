@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Práctica 5 - Sistema IoT</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <script defer src="{{ url_for('static', filename='app.js') }}"></script>
+</head>
+<body>
+  <main class="panel">
+    <h1>Monitoreo IoT</h1>
+    <p id="connection">Conectando con MQTT...</p>
+
+    <section class="card">
+      <h2>Temperatura</h2>
+      <p class="temperature"><span id="temperature">--</span> °C</p>
+    </section>
+
+    <section class="card">
+      <h2>Estado del actuador</h2>
+      <p id="fan-status">Sin información</p>
+    </section>
+
+    <section class="card">
+      <h2>Control del actuador</h2>
+      <div class="buttons">
+        <button id="turn-on" type="button">Encender</button>
+        <button id="turn-off" type="button">Apagar</button>
+      </div>
+      <p id="message" role="status"></p>
+    </section>
+  </main>
+</body>
+</html>

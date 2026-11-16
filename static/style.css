@@ -1,0 +1,78 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  padding: 32px 16px;
+  background: #eef2f7;
+  color: #1f2937;
+  font-family: Arial, sans-serif;
+}
+
+.panel {
+  width: min(100%, 620px);
+  margin: 0 auto;
+}
+
+h1 {
+  margin-bottom: 8px;
+  text-align: center;
+}
+
+#connection {
+  margin-bottom: 24px;
+  text-align: center;
+  color: #475569;
+}
+
+.card {
+  margin: 16px 0;
+  padding: 22px;
+  border-radius: 12px;
+  background: white;
+  box-shadow: 0 3px 12px rgb(15 23 42 / 8%);
+  text-align: center;
+}
+
+.card h2 {
+  margin-top: 0;
+  font-size: 1.1rem;
+}
+
+.temperature {
+  margin: 12px 0;
+  font-size: 2.8rem;
+  font-weight: 700;
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+
+button {
+  min-width: 130px;
+  padding: 12px 18px;
+  border: 0;
+  border-radius: 8px;
+  background: #2563eb;
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+button:last-child {
+  background: #475569;
+}
+
+button:hover {
+  filter: brightness(1.1);
+}
+
+#message {
+  min-height: 1.2em;
+  color: #475569;
+}
