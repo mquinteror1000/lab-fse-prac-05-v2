@@ -434,11 +434,35 @@ Funcionamiento en vídeo.
 
 `[Funcionamiento en video](https://mquinteror.net/video/prac-05.mp4)
 
+### Preguntas de análisis
+
+1. ¿Qué función cumple el broker MQTT dentro del sistema desarrollado?
+   
+   El broker MQTT funciona como intermediario entre los diferentes componentes del sistema. Su función es recibir los mensajes que publican los clientes y distribuirlos a los que están suscritos a determinados tópicos. En nuestra práctica permite que el programa encargado de obtener la temperatura del sensor LM75B, el controlador del LED y la interfaz web puedan intercambiar información sin necesidad de comunicarse directamente entre ellos.
+
+2. ¿Por qué es conveniente separar la adquisición de temperatura, el control del actuador y la interfaz web?
+   
+   Considero que separar estas funciones facilita el desarrollo y mantenimiento del sistema, ya que cada programa tiene una responsabilidad específica. Por un lado, el publicador obtiene las mediciones del sensor LM75B, por otro, el controlador recibe los comandos y utiliza un GPIO de la Raspberry Pi para encender o apagar el LED. Finalmente, la interfaz web permite visualizar la temperatura y enviar las órdenes correspondientes. De esta manera, cada componente puede trabajar de forma independiente y comunicarse con los demás mediante MQTT.
+
+3. ¿Cuál es la diferencia entre el tópico de comando y el tópico de estado del actuador?
+   
+   La diferencia está en la información que transmite cada uno. El tópico /iot/fan/cmd se utiliza para enviar las órdenes que indican si se debe encender o apagar el LED, mediante los valores true y false, respectivamente. En cambio, el tópico /iot/fan/status comunica el estado que reporta el controlador después de procesar la orden. Así podemos distinguir entre la acción que se solicita y el estado que informa el controlador.
+
+4. ¿Qué sucedería si el broker MQTT dejara de funcionar durante la ejecución?
+   
+   Si el broker MQTT dejara de funcionar, los componentes perderían el medio que utilizan para intercambiar información. El programa encargado de publicar la temperatura no podría enviar sus mediciones, la interfaz web dejaría de recibir actualizaciones y las órdenes enviadas para controlar el LED no llegarían al controlador. Por lo tanto, el sistema dejaría de funcionar correctamente como una aplicación integrada hasta que se restableciera la comunicación con el broker.
+
 ## Conclusiones
 
 - **Guerrero Gutierres Héctor:**
+  
+  La práctica demostró la viabilidad y eficacia de implementar una arquitectura IoT utilizando el protocolo MQTT, superando los retos de comunicación y latencia experimentados previamente con HTTP. El modelo publicador-suscriptor evidenció ser altamente eficiente para desacoplar los componentes del sistema, permitiendo que la adquisición de datos del sensor LM75B, la interfaz web y el controlador del actuador operen de forma concurrente sin bloqueos mutuos. Asimismo, la integración del motor DC mediante señales PWM y el uso de un broker local (Mosquitto) subrayó la importancia de centralizar el flujo de mensajes para garantizar un mayor determinismo y una respuesta robusta (fail-safe) en la ejecución de comandos remotos.
 - **Mendoza Gonzáles Mario:**
+  
+  Considero que esta práctica me ayudó a comprender mejor cómo se pueden comunicar diferentes componentes de software utilizando el protocolo MQTT. Al trabajar con las mediciones de temperatura y desarrollar el controlador para el actuador, pude entender mejor cómo funciona la publicación y suscripción a los tópicos sin que la interfaz web y el motor necesiten estar conectados directamente entre sí. También me pareció importante observar el LED de acompañamiento parpadeando a 20 Hz, ya que nos sirvió de forma práctica para confirmar que la señal PWM y los comandos de la página estaban llegando correctamente al hardware. El objetivo se cumplió.
 - **Osorio Camarillo Isaac:**
+  
+  En esta práctica se integró una aplicación IoT completa utilizando la Raspberry Pi como plataforma central, enlazando un sensor de temperatura LM75B, un motor DC y una interfaz web a través del protocolo MQTT. A diferencia de la práctica pasada donde tuvimos muchos problemas de latencia y pérdida de paquetes, el uso del broker Mosquitto y el esquema de tópicos nos permitió una comunicación mucho más fluida y sincronizada entre los scripts de Python. El uso de un LED testigo a baja frecuencia (20 Hz) nos hizo ver la importancia de probar visualmente las señales PWM de los periféricos de forma local antes de dar por terminada la integración.
 - **Quintero Rubio Martin:**  Al realizar esta práctica. Hemos demostrado las capacidades del protocolo MQTT. Como al ternativa al protocolo HTTP para cumplir el mismo propósito de comunicar varios sistemas que trabajan en conjunto.
   
   Durante la realización de la práctica fue de mucha ayuda tener presentes conceptos previos como el ciclo de trabajo y frecuencia de una señal PWM para poder diagnosticar problemas que se nos presentaron y también para mostrar el funcionamiento del mismo. También al probar este protocolo. resultó ser una excelente alternativa a las opciones que habíamos considerado para el proyecto. simplificando bastante su diseño.
