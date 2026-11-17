@@ -436,6 +436,9 @@ Funcionamiento en vídeo.
 
 ## Conclusiones
 
-
-
-- Quintero Rubio Martin
+- **Guerrero Gutierres Héctor:**
+- **Mendoza Gonzáles Mario:**
+- **Osorio Camarillo Isaac:**
+- **Quintero Rubio Martin:**  Al realizar esta práctica. Hemos demostrado las capacidades del protocolo MQTT. Como al ternativa al protocolo HTTP para cumplir el mismo propósito de comunicar varios sistemas que trabajan en conjunto.
+  
+  Durante la realización de la práctica fue de mucha ayuda tener presentes conceptos previos como el ciclo de trabajo y frecuencia de una señal PWM para poder diagnosticar problemas que se nos presentaron y también para mostrar el funcionamiento del mismo. También al probar este protocolo. resultó ser una excelente alternativa a las opciones que habíamos considerado para el proyecto. simplificando bastante su diseño.
