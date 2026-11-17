@@ -50,7 +50,6 @@ alumno@raspberrypi:~/p05 $ sudo systemctl status mosquitto
      Loaded: loaded (/lib/systemd/system/mosquitto.service; enabled; preset: enabled)
      Active: active (running) since Mon 2026-11-09 12:54:36 CST; 1 week 0 days ago
        Docs: man:mosquitto.conf(5)
-
 ```
 
 Procedemos a realizar una prueba
@@ -156,7 +155,6 @@ def main():
 
 if __name__ == "__main__":
     main()
-
 ```
 
 Que al ejecutarlo muestra la temperatura y la publica en el tópico
@@ -240,7 +238,6 @@ def main():
 
 if __name__ == "__main__":
     main()
-
 ```
 
 ### Interfaz WEB
@@ -364,7 +361,6 @@ def main():
 
 if __name__ == "__main__":
     main()
-
 ```
 
 ### Elementos auxiliares
@@ -392,7 +388,6 @@ LM75B_TEMP_REGISTER = 0x00
 
 WEB_HOST = "0.0.0.0"
 WEB_PORT = 5000
-
 ```
 
 **sensor_reader.py**
@@ -419,7 +414,6 @@ def read_temperature() -> float:
         raw -= 0x800
 
     return raw * 0.125
-
 ```
 
 ## Funcionamiento
@@ -438,6 +432,10 @@ Al presionar el botón de apagado este se detiene, también el LED se apaga.
 
 Funcionamiento en vídeo.
 
-`[Funcionamiento en video](https://github.com/mquinteror1000/fse-lab-prac-05-v2)
+`[Funcionamiento en video](https://mquinteror.net/video/prac-05.mp4)
 
-## Conclusiónes
+## Conclusiones
+
+
+
+- Quintero Rubio Martin
